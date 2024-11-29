@@ -15,7 +15,7 @@ describe('Utils test suite', () => {
 	});
 
 	// Jest Hooks Intro (beforeEach, afterEach)
-	describe.only('StringUtils test', () => {
+	describe('StringUtils test', () => {
 		let systemUnderTest: StringUtils;
 
 		beforeEach(() => {
@@ -32,6 +32,48 @@ describe('Utils test suite', () => {
 			const actualResult = systemUnderTest.toUpperCase('abc');
 			expect(actualResult).toBe('ABC');
 			console.log('Actual Test');
+		});
+	});
+
+	// Testing for Errors
+	describe.only('StringUtils test for Errors', () => {
+		let systemUnderTest: StringUtils;
+
+		beforeEach(() => {
+			systemUnderTest = new StringUtils();
+			console.log('Setup');
+		});
+
+		test('return correct upperCase', () => {
+			const actualResult = systemUnderTest.toUpperCase('abc');
+			expect(actualResult).toBe('ABC');
+			console.log('Actual Test');
+		});
+
+		// First way to test Errors (Functions)
+		test('should throw error on invalid argument - function', () => {
+			function expectError() {
+				systemUnderTest.toUpperCase('');
+			}
+
+			expect(expectError).toThrow('Invalid argument');
+		});
+
+		// Second way to test Errors (Arrow Functions)
+		test('should throw error on invalid argument - arrow function', () => {
+			expect(() => systemUnderTest.toUpperCase('')).toThrow('Invalid argument');
+		});
+
+		// Third way to test Errors (Try Catch Block)
+		test('should throw error on invalid argument - try catch block', (done) => {
+			try {
+				systemUnderTest.toUpperCase('');
+				done('GetStringInfo should throw error for invalid arg');
+			} catch (error) {
+				expect(error).toBeInstanceOf(Error);
+				expect(error).toHaveProperty('message', 'Invalid argument');
+				done();
+			}
 		});
 	});
 
