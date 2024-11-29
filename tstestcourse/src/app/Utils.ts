@@ -1,3 +1,9 @@
+export class StringUtils {
+	public toUpperCase(arg: string) {
+		return toUpperCase(arg);
+	}
+}
+
 type stringInfo = {
 	lowerCase: string;
 	upperCase: string;

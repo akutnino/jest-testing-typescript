@@ -1,4 +1,4 @@
-import { getStringInfo, toUpperCase } from '../app/Utils.ts';
+import { getStringInfo, StringUtils, toUpperCase } from '../app/Utils.ts';
 
 describe('Utils test suite', () => {
 	// Structure of a unit test (AAA Principles)
@@ -14,8 +14,29 @@ describe('Utils test suite', () => {
 		expect(actualResult).toBe(expectedResult);
 	});
 
+	// Jest Hooks Intro (beforeEach, afterEach)
+	describe.only('StringUtils test', () => {
+		let systemUnderTest: StringUtils;
+
+		beforeEach(() => {
+			systemUnderTest = new StringUtils();
+			console.log('Setup');
+		});
+
+		afterEach(() => {
+			// Most often for clearing mocks.
+			console.log('Teardown');
+		});
+
+		test('return correct upperCase', () => {
+			const actualResult = systemUnderTest.toUpperCase('abc');
+			expect(actualResult).toBe('ABC');
+			console.log('Actual Test');
+		});
+	});
+
 	// Parametrized tests ( test.each([])('', () => {}) )
-	describe.only('toUpperCase examples', () => {
+	describe('toUpperCase examples', () => {
 		test.each([
 			{ input: 'abc', expectedResult: 'ABC' },
 			{ input: 'My-String', expectedResult: 'MY-STRING' },
