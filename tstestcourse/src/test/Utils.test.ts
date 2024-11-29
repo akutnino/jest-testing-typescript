@@ -1,6 +1,7 @@
 import { getStringInfo, toUpperCase } from '../app/Utils.ts';
 
 describe('Utils test suite', () => {
+	// Structure of a unit test (AAA Principles)
 	test('should return uppercase of valid string', () => {
 		// arrange:
 		const systemUnderTest = toUpperCase;
@@ -13,6 +14,19 @@ describe('Utils test suite', () => {
 		expect(actualResult).toBe(expectedResult);
 	});
 
+	// Parametrized tests ( test.each([])('', () => {}) )
+	describe.only('toUpperCase examples', () => {
+		test.each([
+			{ input: 'abc', expectedResult: 'ABC' },
+			{ input: 'My-String', expectedResult: 'MY-STRING' },
+			{ input: 'def', expectedResult: 'DEF' },
+		])('$input toUpperCase should be $expected', ({ input, expectedResult }) => {
+			const actualResult = toUpperCase(input);
+			expect(actualResult).toBe(expectedResult);
+		});
+	});
+
+	// Clean multiple tests structure w/ assertions and matchers
 	describe(`getStringInfo with agr: 'My-String'`, () => {
 		test('returns string length', () => {
 			const actualResult = getStringInfo('My-String');
