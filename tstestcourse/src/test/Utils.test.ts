@@ -13,6 +13,26 @@ describe('Utils test suite', () => {
 		expect(actualResult).toBe(expectedResult);
 	});
 
+	describe('getStringInfo for arg My-String', () => {
+		test('should return string length', () => {
+			// arrage
+			const systemUnderTest = getStringInfo;
+			const expectedResult = 'My-string';
+
+			// act
+			const actualResult = systemUnderTest('My-String');
+
+			// assert
+			expect(actualResult).toHaveLength(expectedResult.length);
+		});
+		test('should return string in lower case', () => {
+			const systemUnderTest = getStringInfo;
+			const expectedResult = 'my-string';
+			const actualResult = systemUnderTest('My-String');
+			expect(actualResult.lowerCase).toBe(expectedResult);
+		});
+	});
+
 	test.only('should return info for valid string', () => {
 		// arrange:
 		const systemUnderTest = getStringInfo;
