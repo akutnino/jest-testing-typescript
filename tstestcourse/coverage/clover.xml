@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1732977944723" clover="3.2.0">
+  <project timestamp="1732977944724" name="All files">
+    <metrics statements="6" coveredstatements="6" conditionals="1" coveredconditionals="1" methods="3" coveredmethods="3" elements="10" coveredelements="10" complexity="0" loc="6" ncloc="6" packages="1" files="1" classes="1"/>
+    <file name="Utils.ts" path="C:\Users\AKUT\Documents\web_development\unit_testing_course\alex_dan\tstestcourse\src\app\Utils.ts">
+      <metrics statements="6" coveredstatements="6" conditionals="1" coveredconditionals="1" methods="3" coveredmethods="3"/>
+      <line num="1" count="1" type="stmt"/>
+      <line num="3" count="5" type="cond" truecount="1" falsecount="0"/>
+      <line num="4" count="2" type="stmt"/>
+      <line num="17" count="5" type="stmt"/>
+      <line num="27" count="6" type="stmt"/>
+      <line num="30" count="1" type="stmt"/>
+    </file>
+  </project>
+</coverage>
