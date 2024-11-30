@@ -15,7 +15,7 @@ describe('Utils test suite', () => {
 	});
 
 	// Jest Hooks Intro (beforeEach, afterEach)
-	describe('StringUtils test', () => {
+	describe.only('StringUtils test', () => {
 		let systemUnderTest: StringUtils;
 
 		beforeEach(() => {
@@ -28,7 +28,7 @@ describe('Utils test suite', () => {
 			console.log('Teardown');
 		});
 
-		test('return correct upperCase', () => {
+		test.only('return correct upperCase', () => {
 			const actualResult = systemUnderTest.toUpperCase('abc');
 			expect(actualResult).toBe('ABC');
 			console.log('Actual Test');
@@ -36,7 +36,7 @@ describe('Utils test suite', () => {
 	});
 
 	// Testing for Errors
-	describe.only('StringUtils test for Errors', () => {
+	describe('StringUtils test for Errors', () => {
 		let systemUnderTest: StringUtils;
 
 		beforeEach(() => {
