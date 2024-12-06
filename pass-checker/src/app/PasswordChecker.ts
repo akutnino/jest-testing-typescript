@@ -44,8 +44,8 @@ export class PasswordChecker {
 		const reasons: PasswordErrors[] = [];
 
 		if (password.length < 8) reasons.push(PasswordErrors.SHORT);
-		if (noUpperCase || noLowerCase) reasons.push(PasswordErrors.NO_UPPER_CASE);
-		if (noUpperCase || noLowerCase) reasons.push(PasswordErrors.NO_LOWER_CASE);
+		if (noUpperCase) reasons.push(PasswordErrors.NO_UPPER_CASE);
+		if (noLowerCase) reasons.push(PasswordErrors.NO_LOWER_CASE);
 		return {
 			valid: reasons.length === 0 ? true : false,
 			reasons,
