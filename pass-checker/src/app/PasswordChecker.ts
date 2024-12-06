@@ -2,6 +2,7 @@ export enum PasswordErrors {
 	SHORT = 'Password is too short',
 	NO_UPPER_CASE = 'Upper case letter required',
 	NO_LOWER_CASE = 'Lower case letter required',
+	NO_NUMBER = 'at least one number required',
 }
 
 export interface CheckResult {
@@ -11,6 +12,36 @@ export interface CheckResult {
 
 export class PasswordChecker {
 	public checkPassword(password: string): CheckResult {
+		const reasons: PasswordErrors[] = [];
+
+		this.checkForLength(password, reasons);
+		this.checkForUpperCase(password, reasons);
+		this.checkForLowerCase(password, reasons);
+		return {
+			valid: reasons.length === 0 ? true : false,
+			reasons,
+		};
+	}
+
+	public checkAdminPassword(password: string): CheckResult {
+		const basicCheck = this.checkPassword(password);
+		this.checkForNumber(password, basicCheck.reasons);
+		return {
+			valid: basicCheck.reasons.length === 0 ? true : false,
+			reasons: basicCheck.reasons,
+		};
+	}
+
+	private checkForNumber(password: string, reasons: PasswordErrors[]) {
+		const hadNumber = /\d/;
+		if (!hadNumber.test(password)) reasons.push(PasswordErrors.NO_NUMBER);
+	}
+
+	private checkForLength(password: string, reasons: PasswordErrors[]) {
+		if (password.length < 8) reasons.push(PasswordErrors.SHORT);
+	}
+
+	private checkForUpperCase(password: string, reasons: PasswordErrors[]) {
 		const noUpperCase = [...password]
 			.map((char) => {
 				const isNumber = isFinite(Number(char));
@@ -26,6 +57,10 @@ export class PasswordChecker {
 			})
 			.every((bool) => bool === false);
 
+		if (noUpperCase) reasons.push(PasswordErrors.NO_UPPER_CASE);
+	}
+
+	private checkForLowerCase(password: string, reasons: PasswordErrors[]) {
 		const noLowerCase = [...password]
 			.map((char) => {
 				const isNumber = isFinite(Number(char));
@@ -41,14 +76,6 @@ export class PasswordChecker {
 			})
 			.every((bool) => bool === false);
 
-		const reasons: PasswordErrors[] = [];
-
-		if (password.length < 8) reasons.push(PasswordErrors.SHORT);
-		if (noUpperCase) reasons.push(PasswordErrors.NO_UPPER_CASE);
 		if (noLowerCase) reasons.push(PasswordErrors.NO_LOWER_CASE);
-		return {
-			valid: reasons.length === 0 ? true : false,
-			reasons,
-		};
 	}
 }
