@@ -5,10 +5,10 @@ export class PasswordChecker {
 				const charIsNumber = isFinite(Number(char));
 				if (charIsNumber) return false;
 
-				const charIsAlphabet =
+				const isAlphabeticalChar =
 					(char.charCodeAt(0) >= 97 && char.charCodeAt(0) <= 122) ||
 					(char.charCodeAt(0) >= 65 && char.charCodeAt(0) <= 90);
-				if (!charIsAlphabet) return false;
+				if (!isAlphabeticalChar) return false;
 
 				const charToUpperCase = String.fromCharCode(char.charCodeAt(0)).toUpperCase();
 				const charIsUpperCase = charToUpperCase === char;
@@ -22,10 +22,10 @@ export class PasswordChecker {
 				const charIsNumber = isFinite(Number(char));
 				if (charIsNumber) return false;
 
-				const charIsAlphabet =
+				const isAlphabeticalChar =
 					(char.charCodeAt(0) >= 97 && char.charCodeAt(0) <= 122) ||
 					(char.charCodeAt(0) >= 65 && char.charCodeAt(0) <= 90);
-				if (!charIsAlphabet) return false;
+				if (!isAlphabeticalChar) return false;
 
 				const charToLowerCase = String.fromCharCode(char.charCodeAt(0)).toLowerCase();
 				const charIsLowerCase = charToLowerCase === char;
@@ -35,8 +35,7 @@ export class PasswordChecker {
 			.every((bool) => bool === false);
 
 		if (password.length < 8) return false;
-		if (noUpperCase) return false;
-		if (noLowerCase) return false;
+		if (noUpperCase || noLowerCase) return false;
 		return true;
 	}
 }
