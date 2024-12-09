@@ -8,7 +8,7 @@ const config: Config.InitialOptions = {
 	verbose: true,
 	collectCoverage: true,
 	collectCoverageFrom: [`${baseDir}/**/*.ts`],
-	testMatch: [`testDir/**/*.ts`],
+	testMatch: [`${testDir}/**/*.ts`],
 	testEnvironment: 'node',
 	transform: {
 		'^.+.tsx?$': ['ts-jest', {}],
