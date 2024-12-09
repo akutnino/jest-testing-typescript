@@ -12,3 +12,13 @@ export function calculateComplexity(props: stringInfo) {
 		return Object.keys(props.extraInfo).length * props.length;
 	}
 }
+
+// FAKES function example:
+export function toUpperCaseWithCB(arg: string, callback: (arg: string) => void) {
+	if (!arg) {
+		callback('Invalid Argument');
+		return;
+	}
+	callback(`Called function with arg/s: ${arg}`);
+	return arg.toUpperCase();
+}
