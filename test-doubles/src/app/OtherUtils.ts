@@ -1,3 +1,5 @@
+import { v4 } from 'uuid';
+
 export type stringInfo = {
 	lowerCase: string;
 	upperCase: string;
@@ -36,4 +38,16 @@ export class OtherStringUtils {
 	public logString(arg: string) {
 		console.log(arg);
 	}
+}
+
+// Mocking Modules
+export function toUpperCase(args: string) {
+	return args.toUpperCase();
+}
+
+export function toLowerCaseWithID(args: string) {
+	// return args.toLowerCase() + crypto.randomUUID(); LOCAL WAY
+
+	// Package way
+	return args.toLowerCase() + v4();
 }

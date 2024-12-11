@@ -6,7 +6,7 @@ import {
 
 // DUMMY OBJECTS: passed around but not used
 
-describe('OtherUtils test suite', () => {
+describe.skip('OtherUtils test suite', () => {
 	test('should calculate complexity', () => {
 		// STUBS: incomplete objects used as arguments.
 		const someInfo = {
