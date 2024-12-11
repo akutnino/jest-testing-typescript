@@ -1,7 +1,10 @@
-import { calculateComplexity, toUpperCaseWithCB } from '../app/OtherUtils.ts';
+import {
+	calculateComplexity,
+	OtherStringUtils,
+	toUpperCaseWithCB,
+} from '../app/OtherUtils.ts';
 
 // DUMMY OBJECTS: passed around but not used
-// SPIES: tracks information about how a unit is called
 
 describe('OtherUtils test suite', () => {
 	test('should calculate complexity', () => {
@@ -65,6 +68,8 @@ describe('OtherUtils test suite', () => {
 	});
 
 	describe('Tracking callbacks WITH Jest mocks', () => {
+		// WRITE JEST MOCKS:
+		// MOCKS: preprogrammed with expectation
 		const callbackMock = jest.fn();
 
 		afterEach(() => {
@@ -83,6 +88,35 @@ describe('OtherUtils test suite', () => {
 			expect(actualResult).toBe('ABC');
 			expect(callbackMock).toHaveBeenCalledWith('Called function with arg/s: ABC');
 			expect(callbackMock).toHaveBeenCalledTimes(1);
+		});
+	});
+
+	describe('OtherStringUtils tests  with spies', () => {
+		// SPIES: tracks information about how a unit is called
+		let systemUnderTest: OtherStringUtils;
+
+		beforeEach(() => {
+			systemUnderTest = new OtherStringUtils();
+		});
+
+		test('Use a spy to track calls', () => {
+			const toUpperCaseSpy = jest.spyOn(systemUnderTest, 'toUpperCase');
+			systemUnderTest.toUpperCase('abc');
+			expect(toUpperCaseSpy).toHaveBeenCalledWith('abc');
+		});
+
+		test('Use a spy to track calls to other modules', () => {
+			const logStringSpy = jest.spyOn(console, 'log');
+			systemUnderTest.logString('abc');
+			expect(logStringSpy).toHaveBeenCalledWith('abc');
+		});
+
+		// Bad Practice to call private methods in spies.
+		test.skip('Use a spy to replace the implementaion of a module', () => {
+			jest.spyOn(systemUnderTest as any, 'callExternalService').mockImplementation(() => {
+				console.log('calling mocked implementation!!!');
+			});
+			(systemUnderTest as any).callExternalService();
 		});
 	});
 });

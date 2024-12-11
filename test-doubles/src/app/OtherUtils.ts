@@ -22,3 +22,18 @@ export function toUpperCaseWithCB(arg: string, callback: (arg: string) => void) 
 	callback(`Called function with arg/s: ${arg}`);
 	return arg.toUpperCase();
 }
+
+// SPIES function example:
+export class OtherStringUtils {
+	// private callExternalService() {
+	// 	console.log('Calling external service!!!');
+	// }
+
+	public toUpperCase(arg: string) {
+		return arg.toUpperCase();
+	}
+
+	public logString(arg: string) {
+		console.log(arg);
+	}
+}
