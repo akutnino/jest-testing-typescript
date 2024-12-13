@@ -1,4 +1,5 @@
-@token = 462fdb8a94ce7a383689
+@token = 4bd425de8bdc1a6a2215
+"userId": "22bc0e32ff9bf28c0544" 
 
 POST http://localhost:8080/reservation
 Authorization: {{token}}
